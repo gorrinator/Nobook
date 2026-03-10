@@ -6,7 +6,13 @@ jobs:
     steps:
       - name: Create Keystore
         run: |
+          # We name it keystore.jks here
           keytool -genkey -v -keystore keystore.jks -alias my-alias -keyalg RSA -keysize 2048 -validity 10000 \
             -storepass "password123" -keypass "password123" -dname "CN=Android, O=Android, C=US"
-          echo "COPY THIS STRING:"
-          base64 -w 0 my.jks
+          
+          echo "-------------------------------------------------------"
+          echo "COPY EVERYTHING BETWEEN THE DASHES BELOW:"
+          echo "-------------------------------------------------------"
+          # We must use the same filename (keystore.jks) here
+          base64 -w 0 keystore.jks
+          echo -e "\n-------------------------------------------------------"
