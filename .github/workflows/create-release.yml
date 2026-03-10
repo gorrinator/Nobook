@@ -91,7 +91,6 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: |
           git tag ${{ github.event.inputs.release_tag }}
-         # git push origin ${{ github.event.inputs.release_tag }}
           git push https://x-access-token:${{ secrets.MY_RELEASE_TOKEN }}@github.com/${{ github.repository }}.git ${{ github.event.inputs.release_tag }}
 
       - name: Download APK Artifact
