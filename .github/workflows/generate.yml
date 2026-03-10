@@ -1,0 +1,12 @@
+name: Generate My Secret String
+on: workflow_dispatch
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Keystore
+        run: |
+          keytool -genkey -v -keystore keystore.jks -alias my-alias -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass "password123" -keypass "password123" -dname "CN=Android, O=Android, C=US"
+          echo "COPY THIS STRING:"
+          base64 -w 0 my.jks
